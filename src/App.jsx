@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
+  // State for tasks organized by columns
   const [tasks, setTasks] = useState({ todo: [], inProgress: [], done: [] })
+  
+  // State for new task form
   const [newTask, setNewTask] = useState('')
   const [newTaskPriority, setNewTaskPriority] = useState('medium')
   const [loading, setLoading] = useState(true)
 
+  // Load tasks from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem('tasks')
     if (stored) {
@@ -16,6 +20,7 @@ function App() {
         setTasks({ todo: [], inProgress: [], done: [] })
       }
     } else {
+      // Seed data for first-time users
       setTasks({
         todo: [
           { id: '1', title: 'Design system', priority: 'high' },
@@ -32,12 +37,14 @@ function App() {
     setLoading(false)
   }, [])
 
+  // Save tasks to localStorage whenever they change
   useEffect(() => {
     if (!loading) {
       localStorage.setItem('tasks', JSON.stringify(tasks))
     }
   }, [tasks, loading])
 
+  // Add a new task to the "To Do" column
   const addTask = () => {
     if (!newTask.trim()) return
     const task = {
@@ -49,10 +56,12 @@ function App() {
       ...prev,
       todo: [...prev.todo, task]
     }))
+    // Reset form fields
     setNewTask('')
     setNewTaskPriority('medium')
   }
 
+  // Delete a task from any column
   const deleteTask = (column, id) => {
     setTasks(prev => ({
       ...prev,
@@ -60,6 +69,7 @@ function App() {
     }))
   }
 
+  // Move a task from one column to another
   const moveTask = (fromColumn, toColumn, id) => {
     const task = tasks[fromColumn].find(t => t.id === id)
     if (!task) return
@@ -70,6 +80,7 @@ function App() {
     }))
   }
 
+  // Update priority of an existing task
   const updatePriority = (column, id, newPriority) => {
     setTasks(prev => ({
       ...prev,
@@ -79,12 +90,14 @@ function App() {
     }))
   }
 
+  // Column definitions with icons
   const columns = [
     { id: 'todo', title: 'To Do', icon: '📝' },
     { id: 'inProgress', title: 'In Progress', icon: '⚡' },
     { id: 'done', title: 'Done', icon: '✅' }
   ]
 
+  // Helper: Get priority label with emoji
   const getPriorityLabel = (priority) => {
     switch(priority) {
       case 'high': return '🔴 High'
@@ -94,18 +107,11 @@ function App() {
     }
   }
 
-  const getPriorityValue = (priority) => {
-    switch(priority) {
-      case 'high': return 3
-      case 'medium': return 2
-      case 'low': return 1
-      default: return 2
-    }
-  }
-
+  // Helper: Calculate stats for header
   const totalTasks = Object.values(tasks).reduce((sum, col) => sum + col.length, 0)
   const completedTasks = tasks.done.length
 
+  // Helper: Cycle through priorities (low → medium → high → low)
   const cyclePriority = (currentPriority) => {
     const priorities = ['low', 'medium', 'high']
     const currentIndex = priorities.indexOf(currentPriority)
@@ -113,6 +119,7 @@ function App() {
     return priorities[nextIndex]
   }
 
+  // Show loading skeletons while data loads
   if (loading) {
     return (
       <div className="app">
@@ -129,6 +136,7 @@ function App() {
 
   return (
     <div className="app">
+      {/* Header with title and stats */}
       <header className="app-header">
         <div className="header-left">
           <h1 className="app-title">Task Manager</h1>
@@ -154,6 +162,7 @@ function App() {
         </div>
       </header>
 
+      {/* Add task form */}
       <div className="add-task">
         <div className="input-group">
           <input
@@ -179,9 +188,11 @@ function App() {
         </div>
       </div>
 
+      {/* Kanban board with 3 columns */}
       <div className="board">
         {columns.map(col => (
           <div key={col.id} className="column">
+            {/* Column header */}
             <div className="column-header">
               <div className="column-title">
                 <span className="column-icon">{col.icon}</span>
@@ -189,17 +200,22 @@ function App() {
               </div>
               <span className="task-count">{tasks[col.id]?.length || 0}</span>
             </div>
+
+            {/* Task list for this column */}
             <div className="task-list">
               {tasks[col.id]?.length === 0 ? (
+                // Empty state
                 <div className="empty-state">
                   <span className="empty-icon">📭</span>
                   <p>No tasks here</p>
                 </div>
               ) : (
+                // Render each task
                 tasks[col.id]?.map(task => (
                   <div key={task.id} className="task-card">
                     <div className="task-content">
                       <span className="task-title">{task.title}</span>
+                      {/* Clickable priority badge to toggle */}
                       <button
                         className={`priority-badge priority-${task.priority}`}
                         onClick={() => {
@@ -211,6 +227,7 @@ function App() {
                         {getPriorityLabel(task.priority)}
                       </button>
                     </div>
+                    {/* Task action buttons */}
                     <div className="task-actions">
                       {col.id !== 'todo' && (
                         <button 

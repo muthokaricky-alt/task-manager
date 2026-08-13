@@ -1,3 +1,4 @@
+/* ===== APP CONTAINER ===== */
 .app {
   max-width: 1300px;
   margin: 0 auto;
@@ -6,6 +7,7 @@
   min-height: 100vh;
 }
 
+/* ===== HEADER ===== */
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -40,6 +42,7 @@
   align-items: center;
 }
 
+/* ===== STATS BAR ===== */
 .stats {
   display: flex;
   align-items: center;
@@ -75,6 +78,7 @@
   background: var(--color-border);
 }
 
+/* ===== ADD TASK FORM ===== */
 .add-task {
   margin-bottom: var(--spacing-8);
 }
@@ -88,6 +92,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
+/* Input field inside the group */
 .input-group .form-input {
   flex: 1;
   border: none;
@@ -102,6 +107,7 @@
   color: var(--color-text-light);
 }
 
+/* Priority dropdown */
 .input-group .priority-select {
   padding: var(--spacing-2) var(--spacing-3);
   border: 1px solid var(--color-border);
@@ -124,12 +130,14 @@
   white-space: nowrap;
 }
 
+/* ===== KANBAN BOARD ===== */
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-5);
 }
 
+/* ===== COLUMN ===== */
 .column {
   background: var(--color-bg-white);
   border-radius: var(--radius-lg);
@@ -168,6 +176,7 @@
   color: var(--color-text);
 }
 
+/* Task count badge */
 .task-count {
   font-size: var(--font-size-sm);
   font-weight: 500;
@@ -179,12 +188,14 @@
   text-align: center;
 }
 
+/* ===== TASK LIST ===== */
 .task-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2);
 }
 
+/* ===== TASK CARD ===== */
 .task-card {
   display: flex;
   justify-content: space-between;
@@ -218,6 +229,7 @@
   word-break: break-word;
 }
 
+/* ===== PRIORITY BADGES ===== */
 .priority-badge {
   font-size: var(--font-size-xs);
   padding: 4px 12px;
@@ -250,6 +262,7 @@
   color: #059669;
 }
 
+/* ===== TASK ACTION BUTTONS ===== */
 .task-actions {
   display: flex;
   gap: var(--spacing-1);
@@ -287,6 +300,7 @@
   background: #fee2e2;
 }
 
+/* ===== EMPTY STATE ===== */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -307,6 +321,7 @@
   color: var(--color-text-light);
 }
 
+/* ===== BUTTONS ===== */
 .button {
   padding: var(--spacing-2) var(--spacing-4);
   border: none;
@@ -333,6 +348,7 @@
   transform: scale(0.98);
 }
 
+/* ===== FORM INPUT ===== */
 .form-input {
   padding: var(--spacing-2) var(--spacing-3);
   border: 1px solid var(--color-border);
@@ -347,6 +363,7 @@
   border-color: var(--color-primary);
 }
 
+/* ===== SKELETON LOADING ===== */
 .skeleton-header {
   height: 80px;
   background: var(--color-bg);
@@ -376,11 +393,13 @@
   animation: pulse 1.5s ease-in-out infinite;
 }
 
+/* Skeleton animation */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
 
+/* ===== ANIMATIONS ===== */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -392,6 +411,7 @@
   }
 }
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .board {
     grid-template-columns: repeat(3, 1fr);
@@ -404,6 +424,7 @@
     padding: var(--spacing-4);
   }
 
+  /* Stack header on mobile */
   .app-header {
     flex-direction: column;
     align-items: flex-start;
@@ -415,6 +436,7 @@
     width: 100%;
   }
 
+  /* Full-width stats */
   .stats {
     width: 100%;
     justify-content: space-around;
@@ -425,10 +447,12 @@
     display: none;
   }
 
+  /* Single column board on mobile */
   .board {
     grid-template-columns: 1fr;
   }
 
+  /* Stack form inputs on mobile */
   .input-group {
     flex-direction: column;
     background: transparent;
@@ -452,6 +476,7 @@
     width: 100%;
   }
 
+  /* Wrap task content on mobile */
   .task-content {
     flex-wrap: wrap;
   }
