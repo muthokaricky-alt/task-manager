@@ -1,16 +1,34 @@
-# React + Vite
+# 📋 Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A clean, interactive task management application built with React and Vite. Organize your tasks across three columns: To Do, In Progress, and Done.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **📊 Kanban Board** - Three columns for task management
+- **➕ Add Tasks** - Quick task creation with priority levels
+- **↔️ Move Tasks** - Move tasks between columns with arrow buttons
+- **🗑️ Delete Tasks** - Remove tasks you no longer need
+- **🏷️ Priority Labels** - High, Medium, and Low priority badges
+- **💾 Local Storage** - All tasks are saved automatically in your browser
+- **📱 Responsive** - Works on desktop, tablet, and mobile
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** - UI library
+- **Vite** - Build tool and development server
+- **CSS Variables** - Design system with consistent theming
+- **localStorage** - Client-side data persistence
 
-## Expanding the Oxlint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Prerequisites
+
+- **Node.js** (version 16 or higher)
+- **npm** (comes with Node.js)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/muthokaricky-alt/task-manager.git
+   cd task-manager
