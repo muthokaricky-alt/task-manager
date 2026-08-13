@@ -102,6 +102,23 @@
   color: var(--color-text-light);
 }
 
+.input-group .priority-select {
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-white);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.input-group .priority-select:focus {
+  border-color: var(--color-primary);
+}
+
 .input-group .button {
   padding: var(--spacing-3) var(--spacing-6);
   white-space: nowrap;
@@ -191,6 +208,7 @@
   gap: var(--spacing-3);
   flex: 1;
   min-width: 0;
+  flex-wrap: wrap;
 }
 
 .task-title {
@@ -202,11 +220,19 @@
 
 .priority-badge {
   font-size: var(--font-size-xs);
-  padding: 2px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-sm);
   font-weight: 500;
   white-space: nowrap;
-  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+  font-family: var(--font-family);
+}
+
+.priority-badge:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
 }
 
 .priority-high {
@@ -414,6 +440,11 @@
     background: var(--color-bg-white);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
+    padding: var(--spacing-3);
+  }
+
+  .input-group .priority-select {
+    width: 100%;
     padding: var(--spacing-3);
   }
 

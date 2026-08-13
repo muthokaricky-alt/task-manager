@@ -4,6 +4,7 @@ import './App.css'
 function App() {
   const [tasks, setTasks] = useState({ todo: [], inProgress: [], done: [] })
   const [newTask, setNewTask] = useState('')
+  const [newTaskPriority, setNewTaskPriority] = useState('medium')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -42,13 +43,14 @@ function App() {
     const task = {
       id: Date.now().toString(),
       title: newTask.trim(),
-      priority: 'medium'
+      priority: newTaskPriority
     }
     setTasks(prev => ({
       ...prev,
       todo: [...prev.todo, task]
     }))
     setNewTask('')
+    setNewTaskPriority('medium')
   }
 
   const deleteTask = (column, id) => {
@@ -68,6 +70,15 @@ function App() {
     }))
   }
 
+  const updatePriority = (column, id, newPriority) => {
+    setTasks(prev => ({
+      ...prev,
+      [column]: prev[column].map(task =>
+        task.id === id ? { ...task, priority: newPriority } : task
+      )
+    }))
+  }
+
   const columns = [
     { id: 'todo', title: 'To Do', icon: '📝' },
     { id: 'inProgress', title: 'In Progress', icon: '⚡' },
@@ -76,15 +87,31 @@ function App() {
 
   const getPriorityLabel = (priority) => {
     switch(priority) {
-      case 'high': return 'High'
-      case 'medium': return 'Medium'
-      case 'low': return 'Low'
+      case 'high': return '🔴 High'
+      case 'medium': return '🟡 Medium'
+      case 'low': return '🟢 Low'
       default: return ''
+    }
+  }
+
+  const getPriorityValue = (priority) => {
+    switch(priority) {
+      case 'high': return 3
+      case 'medium': return 2
+      case 'low': return 1
+      default: return 2
     }
   }
 
   const totalTasks = Object.values(tasks).reduce((sum, col) => sum + col.length, 0)
   const completedTasks = tasks.done.length
+
+  const cyclePriority = (currentPriority) => {
+    const priorities = ['low', 'medium', 'high']
+    const currentIndex = priorities.indexOf(currentPriority)
+    const nextIndex = (currentIndex + 1) % priorities.length
+    return priorities[nextIndex]
+  }
 
   if (loading) {
     return (
@@ -137,6 +164,15 @@ function App() {
             onChange={(e) => setNewTask(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && addTask()}
           />
+          <select
+            className="priority-select"
+            value={newTaskPriority}
+            onChange={(e) => setNewTaskPriority(e.target.value)}
+          >
+            <option value="high">🔴 High</option>
+            <option value="medium">🟡 Medium</option>
+            <option value="low">🟢 Low</option>
+          </select>
           <button onClick={addTask} className="button button-primary">
             Add Task
           </button>
@@ -164,9 +200,16 @@ function App() {
                   <div key={task.id} className="task-card">
                     <div className="task-content">
                       <span className="task-title">{task.title}</span>
-                      <span className={`priority-badge priority-${task.priority}`}>
+                      <button
+                        className={`priority-badge priority-${task.priority}`}
+                        onClick={() => {
+                          const newPriority = cyclePriority(task.priority)
+                          updatePriority(col.id, task.id, newPriority)
+                        }}
+                        title="Click to change priority"
+                      >
                         {getPriorityLabel(task.priority)}
-                      </span>
+                      </button>
                     </div>
                     <div className="task-actions">
                       {col.id !== 'todo' && (
