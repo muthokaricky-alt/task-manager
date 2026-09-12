@@ -2,7 +2,7 @@
 
 A clean, interactive task management application built with React and Vite. Organize your tasks across three columns: To Do, In Progress, and Done.
 
-## ✨ Features
+##  Features
 
 - **📊 Kanban Board** - Three columns for task management
 - **➕ Add Tasks** - Quick task creation with priority levels
@@ -12,7 +12,7 @@ A clean, interactive task management application built with React and Vite. Orga
 - **💾 Local Storage** - All tasks are saved automatically in your browser
 - **📱 Responsive** - Works on desktop, tablet, and mobile
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **React 18** - UI library
 - **Vite** - Build tool and development server
