@@ -4,13 +4,13 @@ A clean, interactive task management application built with React and Vite. Orga
 
 ##  Features
 
-- **📊 Kanban Board** - Three columns for task management
-- **➕ Add Tasks** - Quick task creation with priority levels
-- **↔️ Move Tasks** - Move tasks between columns with arrow buttons
-- **🗑️ Delete Tasks** - Remove tasks you no longer need
-- **🏷️ Priority Labels** - High, Medium, and Low priority badges
-- **💾 Local Storage** - All tasks are saved automatically in your browser
-- **📱 Responsive** - Works on desktop, tablet, and mobile
+- **Kanban Board** - Three columns for task management
+- ** Add Tasks** - Quick task creation with priority levels
+- ** Move Tasks** - Move tasks between columns with arrow buttons
+- ** Delete Tasks** - Remove tasks you no longer need
+- ** Priority Labels** - High, Medium, and Low priority badges
+- ** Local Storage** - All tasks are saved automatically in your browser
+- ** Responsive** - Works on desktop, tablet, and mobile
 
 ##  Tech Stack
 
