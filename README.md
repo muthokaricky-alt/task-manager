@@ -18,7 +18,7 @@ A clean, interactive task management application built with React and Vite. Orga
 - **Vite** - Build tool and development server
 - **CSS Variables** - Design system with consistent theming
 - **localStorage** - Client-side data persistence
-- Adding backend later
+- Adding backend later -working on it
 
 ## 🚀 Getting Started
 
